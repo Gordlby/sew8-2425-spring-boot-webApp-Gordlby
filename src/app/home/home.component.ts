@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { GroceryItem } from '../grocery-item';
 import { ApireqService } from '../apireq.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -107,11 +110,20 @@ export class HomeComponent {
       collected: false
     } */
   ];
+  showAddItemOverlay: Boolean = false;
+
+  formvars: FormGroup = new FormGroup({
+    name: new FormControl("Item"),
+    amount: new FormControl(0),
+    collected: new FormControl(false)
+  })
   
 
   constructor(private groceryService: ApireqService) { }
   ngOnInit() {
     this.updateItemList();
+    this.showAddItemOverlay = false;
+    this.formvars.reset();
   }
 
 
@@ -125,6 +137,28 @@ export class HomeComponent {
     this.groceryService.getHome().subscribe((data: GroceryItem[]) => {
       this.list = data;
     });
+  }
+
+  onAddItem() {
+    const newItem: GroceryItem = {
+      id: 0,
+      name: this.formvars.get('name')?.value,
+      amount: this.formvars.get('amount')?.value,
+      collected: this.formvars.get('collected')?.value ?? false
+    };
+    console.log(newItem);
+    this.groceryService.addItem(newItem).subscribe(() => {
+      this.updateItemList();
+      this.showAddItemOverlay = false;
+    });
+  }
+  onAddItemOverlay() {
+    this.showAddItemOverlay = true;
+    console.log(this.showAddItemOverlay);
+  }
+  onCloseOverlay() {
+    this.showAddItemOverlay = false;
+    this.formvars.reset();
   }
 
 }

@@ -34,4 +34,17 @@ export class ApireqService {
     let res = this.http.get<GroceryItem>(url);
     return res;
   }
+
+  updateItem(item: GroceryItem): Observable<GroceryItem> {
+    const url = `${environment.apiUrl}`;
+    let res = this.http.put<GroceryItem>(url, item);
+    return res;
+  }
+
+  addItem(item: GroceryItem): Observable<GroceryItem> {
+    const url = `${environment.apiUrl}`;
+    item.id = null!;
+    let res = this.http.post<GroceryItem>(url, item);
+    return res;
+  }
 }

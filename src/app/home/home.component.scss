@@ -30,7 +30,7 @@
                 align-self: stretch;
                 .comp-title {
                     user-select: none;
-                    color: #FFF;
+                    color: #fff;
                     font-family: Inter;
                     font-size: 26px;
                     font-style: normal;
@@ -64,10 +64,10 @@
                         align-items: flex-start;
                         gap: 10px;
                         align-self: stretch;
-    
+
                         border-radius: 15px;
-                        background: rgba(159, 159, 159, 0.10);
-    
+                        background: rgba(159, 159, 159, 0.1);
+
                         .comp-itemtitle {
                             display: flex;
                             padding: 5px 0px;
@@ -75,7 +75,7 @@
                             gap: 10px;
                             align-self: stretch;
                             p {
-                                color: #FFF;
+                                color: #fff;
                                 text-align: center;
                                 font-family: Inter;
                                 font-size: 22px;
@@ -91,7 +91,7 @@
                             gap: 10px;
                             align-self: stretch;
                             p {
-                                color: #FFF;
+                                color: #fff;
                                 text-align: center;
                                 font-family: Inter;
                                 font-size: 22px;
@@ -106,11 +106,11 @@
                                 align-items: center;
                                 gap: 10px;
                                 align-self: stretch;
-    
+
                                 border-radius: 8px;
-                                background: rgba(255, 255, 255, 0.10);
+                                background: rgba(255, 255, 255, 0.1);
                                 p {
-                                    color: #FFF;
+                                    color: #fff;
                                     text-align: center;
                                     font-family: Inter;
                                     font-size: 22px;
@@ -136,7 +136,7 @@
                         gap: 10px;
                         flex-shrink: 0;
                         pointer-events: none;
-                        
+
                         .block {
                             display: flex;
                             padding: 10px;
@@ -147,17 +147,16 @@
                             pointer-events: visible;
 
                             border-radius: 10px;
-                            background: rgba(0, 0, 0, 0.20);
+                            background: rgba(0, 0, 0, 0.2);
                             .icon {
                                 width: 20px;
                                 height: 20px;
                                 aspect-ratio: 1/1;
                             }
                             &:hover {
-                                background: rgba(0, 0, 0, 0.30);
+                                background: rgba(0, 0, 0, 0.3);
                             }
                         }
-                        
                     }
                     &:not(:hover) {
                         background: none;
@@ -175,9 +174,10 @@
                     align-items: center;
                     aspect-ratio: 30/31;
                     border: none;
+                    pointer-events: visible;
 
                     border-radius: 8px;
-                    background: #595A6B;
+                    background: #595a6b;
                     .itemaddicon {
                         width: 14px;
                         height: 14px;
@@ -185,10 +185,126 @@
                         aspect-ratio: 1/1;
 
                         stroke-width: 3px;
-                        stroke: #95959E;
+                        stroke: #95959e;
+                    }
+                    &:hover {
+                        background: #4a4b5c;
+                    }
+                    &:active {
+                        background: #3f3f4e;
                     }
                 }
             }
         }
+    }
+}
+
+.additem-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: visible;
+
+    .overlay-content {
+        display: flex;
+        background: #3c3e4e;
+        padding: 20px;
+        width: 30em;
+        gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        border-radius: 20px;
+        background-color: #484957;
+
+
+
+        h2 {
+            color: #fff;
+            text-align: center;
+            font-family: Inter;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+        .additem-form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            align-self: stretch;
+
+
+
+        .wrappform {
+            display: flex;
+            height: 50px;
+            padding: 10px 20px;
+            align-items: center;
+            gap: 10px;
+            align-self: stretch;
+
+            label {
+                color: #fff;
+                text-align: center;
+                font-family: Inter;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+            input[type="text"],
+            input[type="number"] {
+                flex: 1 0 0;
+                align-self: stretch;
+                border-radius: 10px;
+                background: #2c2e3e;
+                color: #fff;
+                font-family: Inter, sans-serif;
+                font-weight: 600;
+                border: none;
+                padding: 10px;
+            }
+    
+            input[type="checkbox"] {
+                height: 20px;
+                aspect-ratio: 1/1;
+                background: #2c2e3e;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+            }
+        }
+
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #5176d4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-family: Inter, sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+
+            &:hover {
+                background: #4a6bb8;
+            }
+
+            &:active {
+                background: #3f5ca2;
+            }
+        }
+        } 
     }
 }

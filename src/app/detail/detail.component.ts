@@ -34,27 +34,37 @@ export class DetailComponent {
     });
   }
 
-  onDelete(id: number) {
-    this.groceryService.deleteItem(id);
-    this.router.navigate(['/']);
+  onDelete() {
+    if (!this.item) return;
+    this.groceryService.deleteItem(this.item.id);
+    //this.router.navigate(['/']);
+    this.item = undefined;
   }
 
 
   onNameInput() {
     const input = document.getElementById('inputname') as HTMLInputElement;
-    const mirror = input.parentElement?.querySelector('.input-mirror-name') as HTMLElement
-    if (mirror && event) {
-      mirror.textContent = input.value || '';
-      input.style.width = mirror.offsetWidth + 'px';
-    }
+    this.nameInput = input.value;
   }
-  onAmountInput(event: Event) {
-    const input = event.target as HTMLInputElement;
+  onAmountInput() {
+    const input = document.getElementById('inputamount') as HTMLInputElement;
     this.amountInput = parseInt(input.value);
   }
-  onCollectedInput(event: Event) {
-    const input = event.target as HTMLInputElement;
+  onCollectedInput() {
+    const input = document.getElementById('inputcollected') as HTMLInputElement;
     this.collectedInput = input.checked;
+  }
+  onCommit() {
+    let item: GroceryItem = {
+      id: this.id,
+      name: this.nameInput,
+      amount: this.amountInput,
+      collected: this.collectedInput
+    };
+    this.groceryService.updateItem(item).subscribe((data: GroceryItem) => {
+      this.item = data;
+    }
+    );
   }
 
 
